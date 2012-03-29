@@ -14,10 +14,11 @@ class identd {
         require => Package['identd'],
       }
       service { 'identd':
-        name    => 'oidentd',
-        ensure  => 'running',
-        enable  => true,
-        require => File['oidentd.conf'],
+        name      => 'oidentd',
+        ensure    => 'running',
+        enable    => true,
+        hasstatus => false,
+        require   => File['oidentd.conf'],
       }
     }
     'freebsd': {
