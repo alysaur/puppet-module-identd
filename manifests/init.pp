@@ -5,6 +5,7 @@ class identd {
     ensure => 'installed',
     name   => $identd::params::packagename,
   }
+
   file { 'oidentd.conf':
     path    => $identd::params::filepath,
     source  => $identd::params::filesource,
@@ -13,6 +14,7 @@ class identd {
     mode    => '0644',
     require => Package['identd'],
   }
+
   service { 'identd':
     ensure    => 'running',
     name      => $identd::params::servicename,
