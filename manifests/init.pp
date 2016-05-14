@@ -20,6 +20,7 @@ class identd {
     name      => $identd::params::servicename,
     enable    => true,
     hasstatus => $identd::params::hasstatusval,
+    provider  => $::identd::params::service_provider,
     require   => File['oidentd.conf'],
   }
 }

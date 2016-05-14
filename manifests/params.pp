@@ -13,6 +13,12 @@ class identd::params {
       $rootgroup     = 'root'
       $servicename   = 'oidentd'
       $hasstatusval  = false
+      if (versioncmp($::operatingsystemrelease, '16.04') >= 0) {
+        $service_provider = 'debian'
+      }
+      else {
+        $service_provider = undef
+      }
     }
     'FreeBSD': {
       $packagename   = 'security/oidentd'
@@ -22,6 +28,7 @@ class identd::params {
       $rootgroup     = 'wheel'
       $servicename   = 'oidentd'
       $hasstatusval  = true
+      $service_provider = undef
     }
     'RedHat': {
       $packagename   = 'oidentd'
@@ -31,6 +38,7 @@ class identd::params {
       $rootgroup     = 'root'
       $servicename   = 'oidentd'
       $hasstatusval  = true
+      $service_provider = undef
     }
     default: {
       fail("Unsupported osfamily: ${::osfamily},\
